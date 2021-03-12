@@ -25,6 +25,7 @@ class _DownloadPageState extends State<DownloadPage> {
                     imageURL: data['imageURL'],
                     price: data['price'],
                     quantity: data['quantity'],
+                    imagePath: data['imagePath'],
                   );
                 },
               );

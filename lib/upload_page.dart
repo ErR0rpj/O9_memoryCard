@@ -10,6 +10,7 @@ class UploadPage extends StatefulWidget {
 }
 
 class _UploadPageState extends State<UploadPage> {
+  final snackBar2 = SnackBar(content: Text('Uploading...'));
   final snackBar = SnackBar(content: Text('Upload complete'));
   var productController = TextEditingController();
   var quantityController = TextEditingController();
@@ -140,6 +141,8 @@ class _UploadPageState extends State<UploadPage> {
                 child: TextButton(
                   child: Text('Upload'),
                   onPressed: () {
+                    ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar2);
                     ProductDetails productDetails = ProductDetails(
                       productName: productController.text,
                       quantity: int.parse(quantityController.text),

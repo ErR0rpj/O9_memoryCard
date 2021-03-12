@@ -11,23 +11,63 @@ class FirebaseFunctions {
   CollectionReference productsCollection =
       FirebaseFirestore.instance.collection('products');
 
+  Future updateOnFirebase(
+      BuildContext context, File _image, ProductDetails productDetails) async {
+    if (_image == null) {
+      productsCollection
+          .doc(productDetails.id)
+          .update(productDetails.productDetailsMap);
+    } else {
+      String fileName = basename(_image.path);
+      firebase_storage.Reference firebaseStorageRef = firebase_storage
+          .FirebaseStorage.instance
+          .ref()
+          .child('products/$fileName');
+      firebase_storage.UploadTask uploadTask =
+          firebaseStorageRef.putFile(_image);
+
+      firebase_storage.TaskSnapshot taskSnapshot = await uploadTask;
+      taskSnapshot.ref.getDownloadURL().then(
+        (String value) {
+          _imageURL = productDetails.imageURL;
+          String imagePath = productDetails.imagePath;
+          print("Done uploading image: $value");
+          print('Pahunhgya');
+          productDetails.addImageURL(value);
+          productDetails.addImagePath(fileName);
+          productsCollection
+              .doc(productDetails.id)
+              .update(productDetails.productDetailsMap);
+          firebase_storage.Reference firebaseStorageRef = firebase_storage
+              .FirebaseStorage.instance
+              .ref()
+              .child('products/$imagePath');
+          firebaseStorageRef.delete();
+        },
+      );
+    }
+  }
+
   Future uploadImageToFirebase(
       BuildContext context, File _image, ProductDetails productDetails) async {
-    SnackBar(content: Text('Uploading...'));
     String fileName = basename(_image.path);
     print(_image.path);
     firebase_storage.Reference firebaseStorageRef = firebase_storage
         .FirebaseStorage.instance
         .ref()
         .child('products/$fileName');
+
     firebase_storage.UploadTask uploadTask = firebaseStorageRef.putFile(_image);
+
     firebase_storage.TaskSnapshot taskSnapshot = await uploadTask;
+
     taskSnapshot.ref.getDownloadURL().then(
       (String value) {
         _imageURL = value;
         print("Done uploading image: $_imageURL");
         print('Pahunhgya');
         productDetails.addImageURL(_imageURL);
+        productDetails.addImagePath(fileName);
         addProducts(context, productDetails);
       },
     );
