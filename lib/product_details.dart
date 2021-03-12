@@ -1,4 +1,5 @@
 class ProductDetails {
+  String id;
   String imageURL;
   String productName;
   int quantity;
@@ -17,5 +18,6 @@ class ProductDetails {
 
   void addImageURL(String imgURL) {
     this.imageURL = imgURL;
+    productDetailsMap['imageURL'] = this.imageURL;
   }
 }

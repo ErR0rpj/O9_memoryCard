@@ -149,6 +149,12 @@ class _UploadPageState extends State<UploadPage> {
                         .uploadImageToFirebase(context, _image, productDetails)
                         .then((value) {
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      setState(() {
+                        productController.clear();
+                        quantityController.clear();
+                        priceController.clear();
+                        _image = null;
+                      });
                     });
                   },
                 ),

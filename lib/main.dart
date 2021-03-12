@@ -50,6 +50,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _currentIndex,
+        onTap: (value) {
+          setState(() {
+            _currentIndex = value;
+          });
+        },
       ),
       body: IndexedStack(
         index: _currentIndex,
