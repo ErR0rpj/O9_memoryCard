@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "495101784966",
+    "project_id": "o9memorycard",
+    "storage_bucket": "o9memorycard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495101784966:android:80f9625378335101c9b207",
+        "android_client_info": {
+          "package_name": "com.example.o9_memorycard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495101784966-8e0e0e1mka1nkbh6ogpd7utimhgo043a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGp_ubs3VFtnDqHB6OyWVuMq-e8zUvUIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495101784966-8e0e0e1mka1nkbh6ogpd7utimhgo043a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
